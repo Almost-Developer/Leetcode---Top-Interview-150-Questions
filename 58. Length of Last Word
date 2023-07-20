@@ -1,0 +1,57 @@
+Length of Last Word
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+A word is a maximal 
+substring
+ consisting of non-space characters only.
+
+Example 1:
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+
+Example 2:
+Input: s = "   fly me   to   the moon  "
+Output: 4
+Explanation: The last word is "moon" with length 4.
+
+Example 3:
+Input: s = "luffy is still joyboy"
+Output: 6
+Explanation: The last word is "joyboy" with length 6.
+ 
+Constraints:
+1 <= s.length <= 104
+s consists of only English letters and spaces ' '.
+There will be at least one word in s.
+
+Approach:
+1. take two variable found, ans one for checking the the first element is space or not another one for counting last word length 
+2. iterate over the string
+3. if element is not equal to space then increment ans
+4. otherwise break the function and return ans value
+
+Solution.
+class HelloWorld {
+    public static int lengthOfLastWord(String str) {
+        int ans = 0;
+        int found = 0;
+        char gap = ' ';
+        for(int i=str.length()-1; i>=0; i--) {
+            char ch = str.charAt(i);
+            if(found == 0 && ch == gap) continue;
+            else if(ch != gap) {
+                found++;
+                ans++;
+            }
+            else break;
+        }
+        return ans;
+    }
+    
+    public static void main(String[] args) {
+        String str =  "luffy is still joyboy";
+        int res = lengthOfLastWord(str);
+        System.out.println(res);
+    }
+}
