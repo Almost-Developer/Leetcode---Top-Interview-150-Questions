@@ -24,7 +24,7 @@ Approach:
 1. take a pointer on the index which will be at zero.
 2. iterate over the array and check for the value matches with said value.
 3. if it does matches skip the element.
-4. otherwise let the element be and iterate index pointer.
+4. otherwise let the element be and increment index pointer.
 
 Solution.
 
