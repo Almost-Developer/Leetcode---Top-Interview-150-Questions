@@ -1,0 +1,55 @@
+Valid Palindrome
+
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+Example 1:
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+
+Example 2:
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+
+Example 3:
+Input: s = " "
+Output: true
+Explanation: s is an empty string "" after removing non-alphanumeric characters.
+Since an empty string reads the same forward and backward, it is a palindrome.
+
+Constraints:
+1 <= s.length <= 2 * 105
+s consists only of printable ASCII characters.
+
+Approach:
+1. Take two pointer at first and last element.
+2. Iterating the string and compare first and last character in the array.
+3. if first or last element is not letter or any character then skip that place and increment that pointer value.
+
+Solution.
+class HelloWorld {
+    public static void main(String[] args) {
+        String str = "A man, a plan, a canal: Panama";
+        boolean res = validPalindrome(str);
+        System.out.println(res);
+    }
+    public static boolean validPalindrome(String s) {
+        int start = 0;
+        int end = s.length()-1;
+
+        while(start <= end){
+            char firstLetter = s.charAt(start);
+            char lastLetter = s.charAt(end);
+            if(!Character.isLetterOrDigit(firstLetter)) start++;
+            else if(!Character.isLetterOrDigit(lastLetter)) end--;
+            else{
+                if(Character.toLowerCase(firstLetter) != Character.toLowerCase(lastLetter)) return false;
+                start++;
+                end--;
+            }
+        }
+        return true;
+    }
+}
