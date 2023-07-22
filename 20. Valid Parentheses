@@ -1,0 +1,55 @@
+Valid Parentheses
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+An input string is valid if:
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+
+Example 1:
+Input: s = "()"
+Output: true
+
+Example 2:
+Input: s = "()[]{}"
+Output: true
+
+Example 3:
+Input: s = "(]"
+Output: false
+ 
+Constraints:
+1 <= s.length <= 104
+s consists of parentheses only '()[]{}'.
+
+Approach:
+1. Take a stack and push the characters one by one
+2. if there's pair of the bracket is available on peek, then pop it
+3. at the end check whether the stack is empty or not.
+
+Solution.
+import java.util.*;
+class HelloWorld {
+    public static void main(String[] args) {
+        String str = "(){}[]";
+        boolean res = validString(str);
+        System.out.println(res);
+    }
+    public static boolean validString(String s) {
+        if(s.length() % 2 != 0) return false;
+        Stack<Character> st = new Stack<>();
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            if(ch == '[' || ch == '{' || ch == '('){
+                st.push(ch);
+            }
+            else{
+                if(st.size() == 0) return false;
+                else if(ch == ']' && st.peek() != '[') return false;
+                else if(ch == '}' && st.peek() != '{') return false;
+                else if(ch == ')' && st.peek() != '(') return false;
+                else st.pop();
+            }
+        }
+        return st.isEmpty();
+    }
+}
