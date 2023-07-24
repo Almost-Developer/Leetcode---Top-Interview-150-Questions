@@ -1,0 +1,63 @@
+100. Same Tree
+
+Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+
+Example 1:
+Input: p = [1,2,3], q = [1,2,3]
+Output: true
+
+Example 2:
+Input: p = [1,2], q = [1,null,2]
+Output: false
+
+Example 3:
+Input: p = [1,2,1], q = [1,1,2]
+Output: false
+ 
+Constraints:
+The number of nodes in both trees is in the range [0, 100].
+-104 <= Node.val <= 104
+
+Solution.
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+class BinaryTree {
+    Node root1, root2;
+    
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree();
+        
+        tree.root1 = new Node(1);
+        tree.root1.left = new Node(2);
+        tree.root1.right = new Node(3);
+        tree.root1.left.left = new Node(4);
+        tree.root1.left.right = new Node(5);
+ 
+        tree.root2 = new Node(1);
+        tree.root2.left = new Node(2);
+        tree.root2.right = new Node(3);
+        tree.root2.left.left = new Node(4);
+        tree.root2.left.right = new Node(5);
+        
+        if(tree.identical(tree.root1, tree.root2)) {
+            System.out.println("YES");
+        }
+        else {
+            System.out.println("NO");
+        }
+    }
+    public static boolean identical(Node a, Node b){
+        if(a == null && b == null) return true;
+        else if (a == null || b == null) return false;
+        else if(a.data != b.data) return false;
+        else return identical(a.left, b.left) 
+        && identical(a.right, b.right);
+    }
+}
