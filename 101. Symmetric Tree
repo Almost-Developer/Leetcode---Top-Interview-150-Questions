@@ -1,0 +1,56 @@
+101. Symmetric Tree
+
+Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+
+Example 1:
+Input: root = [1,2,2,3,4,4,3]
+Output: true
+
+Example 2:
+Input: root = [1,2,2,null,3,null,3]
+Output: false
+ 
+Constraints:
+The number of nodes in the tree is in the range [1, 1000].
+-100 <= Node.val <= 100
+
+Solution.
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+class BinaryTree {
+    static Node root;
+    
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree();
+        
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(2);
+        tree.root.left.left = new Node(3);
+        tree.root.left.right = new Node(4);
+        tree.root.right.left = new Node(4);
+        tree.root.right.right = new Node(3);
+        
+        if(tree.symmetric(root)) {
+            System.out.print("true");
+        }
+        else System.out.print("false");
+    }
+    
+    public static boolean symmetric(Node root){
+        return isMirror(root, root);
+    }
+    
+    public static boolean isMirror(Node a, Node b) {
+        if(a == null && b == null) return true;
+        else if(a == null || b == null) return false;
+        if(a.data != b.data) return false;
+        return isMirror(a.left, b.right) && isMirror(a.right, b.left);
+    }
+}
